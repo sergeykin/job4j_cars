@@ -1,6 +1,7 @@
 package ru.job4j_cars.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -28,10 +29,14 @@ public class Announcement {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
     public Announcement(String description, boolean done, User user) {
         this.description = description;
         this.done = done;
         this.user = user;
+        this.created = new Date(System.currentTimeMillis());
     }
 
     public Announcement() {
@@ -94,6 +99,14 @@ public class Announcement {
         this.user = user;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,6 +130,7 @@ public class Announcement {
                 ", pathImage='" + pathImage + '\'' +
                 ", done=" + done +
                 ", user=" + user +
+                ", created=" + created +
                 '}';
     }
 }
