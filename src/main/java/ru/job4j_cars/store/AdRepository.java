@@ -36,12 +36,7 @@ public class AdRepository {
         return this.tx(
                 session -> {
                     Date date = new Date();
-                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                    String s=df.format(date);
-                    try {
-                        date = df.parse(s);
-                    } catch (ParseException ex) {
-                    }
+                    
                     return session.createQuery("select an " +
                             "from ru.job4j_cars.model.Announcement an " +
                             "join fetch an.bodyType bt " +
